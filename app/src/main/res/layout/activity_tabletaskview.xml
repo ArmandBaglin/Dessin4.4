@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="Retour à l'image"
+            android:id="@+id/buttonReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tasksTable"
+            android:layout_below="@+id/buttonReturn">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tâche n° :      "
+                    android:textSize="20dp"
+                    android:textColor="#346ee2"/>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Détails :"
+                    android:textSize="20sp"
+                    android:textColor="#346ee2"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="#2dad1a"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Blablabla"
+                    android:textColor="#2dad1a"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/buttonOK"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OK" />
+
+                <Button
+                    android:id="@+id/buttonOkAf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OK(X)" />
+
+                <Button
+                    android:id="@+id/buttonOkAn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OK(T)" />
+
+                <Button
+                    android:id="@+id/buttonKO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KO" />
+
+                <Button
+                    android:id="@+id/buttonND"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Not Done" />
+
+                <Button
+                    android:id="@+id/buttonNO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NO" />
+
+                <Button
+                    android:id="@+id/buttonPipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="||||||" />
+
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+</ScrollView>
