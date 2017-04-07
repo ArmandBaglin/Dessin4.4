@@ -31,8 +31,8 @@ public class DrawView extends AppCompatImageView {
     private Canvas canvas;
 
     Rectangle rectB = new Rectangle(375,300,575,500,1,3,"b");
-    //Rectangle rectB1 = new Rectangle(0,0,200,200,4,2,"r");
-    //Circle c = new Circle(800,175,100,6,2,"l");
+    Rectangle rectB1 = new Rectangle(0,0,200,200,4,2,"r");
+    Circle c = new Circle(800,175,100,6,2,"l");
 
     private OnTouchListenerI listener;
     private TouchImageView imageView;
@@ -62,8 +62,8 @@ public class DrawView extends AppCompatImageView {
         pImageView.draw(canvas);
 
         shapes.add(rectB);
-        //shapes.add(rectB1);
-        //shapes.add(c);
+        shapes.add(rectB1);
+        shapes.add(c);
         //shapes.add(c1);
 
         for(int i=0;i<shapes.size();i++){
@@ -77,13 +77,15 @@ public class DrawView extends AppCompatImageView {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    double x = event.getX();
-                    double y = event.getY();
+                    float x = event.getX();
+                    float y = event.getY();
                     float zoom = pImageView.getCurrentZoom();
                     RectF rect = imageView.getZoomedRect();
-                    PointF pointZoom = imageView.getTopLeft();
+                    PointF point0Zoom = imageView.getTopLeft();
+                    //PointF point1Zoom = imageView.getBottomRight();
+
                     for(int i=0;i<shapes.size();i++) {
-                        if (shapes.get(i).contains(x,y,pointZoom,zoom)) {
+                        if (shapes.get(i).contains(x,y,point0Zoom,zoom)) {
                             listener.onTouch(shapes.get(i));
                         }
                     }

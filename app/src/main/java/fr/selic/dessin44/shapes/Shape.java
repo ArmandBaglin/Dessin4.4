@@ -12,6 +12,6 @@ import fr.selic.dessin44.activity.TouchImageView;
 
 public interface Shape extends Serializable {
     void drawOnImage(Canvas canvas);
-    boolean contains(double  x, double y, PointF pointZoom, float zoom);
+    boolean contains(float x, float y, PointF point0Zoom, float zoom);
     Canvas addOnImage(DrawView drawView, TouchImageView imageView, Canvas canvas, char index);
 }

@@ -192,7 +192,7 @@ public class Circle implements Shape {
 
     //check if the touchEvent is in the Circle
     @Override
-    public boolean contains(double x, double y, PointF pointZoom, float zoom) {
+    public boolean contains( float x, float y, PointF pointZoom, float zoom) {
         double dist = distance(x,y,cx,cy);
         if(dist<=radius)
             return true;

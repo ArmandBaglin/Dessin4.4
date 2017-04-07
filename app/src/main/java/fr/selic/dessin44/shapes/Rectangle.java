@@ -199,20 +199,19 @@ public class Rectangle implements Shape {
 
     //check if the touchEvent is in the Rectangle
     @Override
-    public boolean contains(double pX, double pY, PointF pointZoom, float pZoom) {
-        float x0Z = pointZoom.x;
-        float y0Z = pointZoom.y;
-        float x0Zoom = x0+x0Z;
-        float y0Zoom = y0+y0Z;
-        float x1Zoom = (x1-x0)+x0Zoom;
-        float y1Zoom = (y1-y0)+y0Zoom;
-        float x0T = (float)pX+x0Z;
-        float y0T = (float)pY+y0Z;
+    public boolean contains(float pX, float pY, PointF point0Zoom, float zoom ) {
+        float x0Z = point0Zoom.x;
+        float y0Z = point0Zoom.y;
+        float x0Zoom = (x0-x0Z)*zoom;
+        float y0Zoom = (y0-y0Z)*zoom;
+        float x1Zoom = (x1-x0Z)*zoom;
+        float y1Zoom = (y1-y0Z)*zoom;
+        float x0T = pX;
+        float y0T = pY;
 
         Log.i("Message","x0: "+x0Z+" y0: "+y0Z);
-        Log.i("Message","Zoom x0: "+x0Zoom+" y0: "+y0Zoom);
-        Log.i("Message","Touch x: "+x0T+" y: "+y0T);
-        Log.i("Message","Zoom x1: "+x1Zoom+" y1: "+y1Zoom);
+        Log.i("Message","Zoom x0: "+x0Zoom+"    x0T: "+x0T+"    x1: "+x1Zoom);
+        Log.i("Message","Zoom y0: "+y0Zoom+"    y0T: "+y0T+"    y1: "+y1Zoom);
         return (x0T > x0Zoom || x0T == x0Zoom) && (x0T < x1Zoom || x0T == x1Zoom) && (y0T > y0Zoom || y0T == y0Zoom) && (y0T < y1Zoom || y0T == y1Zoom);
     }
 
