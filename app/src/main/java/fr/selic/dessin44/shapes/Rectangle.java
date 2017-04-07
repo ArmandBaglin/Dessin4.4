@@ -17,43 +17,19 @@ public class Rectangle implements Shape {
     private float y0;
     private float x1;
     private float y1;
-    private int nbInit;
-    private int nbTasks;
-    private int nb=0;
-    private String orientation;
-
 
 
     //constructor
-    public Rectangle(float x0, float y0, float x1, float y1, int nbInit, int nbTasks, String orientation) {
+    public Rectangle(float x0, float y0, float x1, float y1) {
         this.x0 = x0;
         this.y0 = y0;
         this.x1 = x1;
         this.y1 = y1;
-        this.nbInit=nbInit;
-        this.nbTasks=nbTasks;
-        this.orientation=orientation;
     }
-
-    /*@Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeFloat(x0);
-        dest.writeFloat(y0);
-        dest.writeFloat(x1);
-        dest.writeFloat(y1);
-        dest.writeInt(nbInit);
-        dest.writeInt(nbTasks);
-        dest.writeString(orientation);
-    }*/
 
     //override method herited from Shape interface
     @Override
-    public void drawOnImage(Canvas pCanvas) {
+    public void drawOnImage(Canvas pCanvas, Shape pShape, TaskShape pTaskShape) {
         int strokeWidth = 3;
         float rectSize = 30;
         int textSize = 22;
@@ -81,41 +57,7 @@ public class Rectangle implements Shape {
         paint.setColor(Color.RED);
         //drawing of a Rectangle
         pCanvas.drawRect(x0, y0, x1, y1, paintRectangle);
-
-        //placement of the rectangle(s) around the rectangle
-        do{
-            //red rectangles around the rectangle
-            float dec = nb*rectSize;
-
-            switch(orientation){
-                case "b" :
-                    //bottom
-                    pCanvas.drawRect(((x1+x0)/2), y1+dec, ((x1+x0)/2)+rectSize, y1+dec+rectSize, paintRect);
-                    pCanvas.drawText(Integer.toString(nbInit), (x1+x0)/2+strokeWidth*3, y1+dec+rectSize-strokeWidth*3, paintText);
-                    pCanvas.drawRect((x1+x0)/2+rectSize, y1+dec, ((x1+x0)/2)+rectSize*2, y1+dec+rectSize,paint);
-                    break;
-                case "t" :
-                    //top
-                    pCanvas.drawRect(((x1+x0)/2)-rectSize+dec,y0-rectSize,((x1+x0)/2)+dec,y0,paintRect);
-                    pCanvas.drawText(Integer.toString(nbInit), ((x1+x0)/2)-(rectSize/3)+dec-2*strokeWidth, (y0-strokeWidth), paintText);
-                    pCanvas.drawRect(((x1+x0)/2)-rectSize+dec,y0-rectSize*2,((x1+x0)/2)+dec,y0-rectSize,paint);
-                    break;
-                case "r" :
-                    //right
-                    pCanvas.drawRect(x1,((y1+y0)/2)-rectSize+dec,x1+rectSize,((y0+y1)/2)+dec,paintRect);
-                    pCanvas.drawText(Integer.toString(nbInit), x1+strokeWidth*3, ((y1+y0)/2)-strokeWidth*3+dec, paintText);
-                    pCanvas.drawRect(x1+rectSize,((y1+y0)/2)-rectSize+dec,x1+rectSize*2,((y0+y1)/2)+dec,paint);
-                    break;
-                case "l" :
-                    //left
-                    pCanvas.drawRect(x0-rectSize,(((y0+y1)/2)+dec)-rectSize,x0,((y0+y1)/2)+dec,paintRect);
-                    pCanvas.drawText(Integer.toString(nbInit), (x0-rectSize)+strokeWidth*3, ((y1+y0)/2)-strokeWidth*3+dec, paintText);
-                    pCanvas.drawRect(x0-rectSize*2,(((y0+y1)/2)+dec)-rectSize,x0-rectSize,((y0+y1)/2)+dec,paint);
-                    break;
-            }
-            nb++;
-            nbInit++;
-        }while(nb<nbTasks);
+        pTaskShape.addTaskRectOnShape(pTaskShape,pCanvas);
 
     }
 

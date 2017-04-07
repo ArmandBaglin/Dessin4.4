@@ -27,12 +27,17 @@ public class DrawView extends AppCompatImageView {
 
 
     private List<Shape> shapes;
+    private List<TaskShape> taskShapes;
     private Bitmap bmp;
     private Canvas canvas;
 
-    Rectangle rectB = new Rectangle(375,300,575,500,1,3,"b");
-    Rectangle rectB1 = new Rectangle(0,0,200,200,4,2,"r");
-    Circle c = new Circle(800,175,100,6,2,"l");
+    Rectangle rectB = new Rectangle(375,300,575,500);
+    Rectangle rectB1 = new Rectangle(0,0,200,200);
+    Circle c = new Circle(800,175,100);
+    TaskShape taskRectB = new TaskShape(rectB,1,3,"b");
+    TaskShape taskrectB1 = new TaskShape(rectB1,4,2,"r");
+    TaskShape taskC = new TaskShape(c,6,2,"l");
+
 
     private OnTouchListenerI listener;
     private TouchImageView imageView;
@@ -57,17 +62,22 @@ public class DrawView extends AppCompatImageView {
     public TouchImageView drawOnImage(final TouchImageView pImageView) {
 
         shapes = new ArrayList<>();
+        taskShapes = new ArrayList<>();
 
         canvas = new Canvas(bmp);
         pImageView.draw(canvas);
 
+
         shapes.add(rectB);
         shapes.add(rectB1);
         shapes.add(c);
-        //shapes.add(c1);
+
+        taskShapes.add(taskRectB);
+        taskShapes.add(taskrectB1);
+        taskShapes.add(taskC);
 
         for(int i=0;i<shapes.size();i++){
-            shapes.get(i).drawOnImage(canvas);
+            shapes.get(i).drawOnImage(canvas,shapes.get(i),taskShapes.get(i));
         }
 
         pImageView.setImageBitmap(bmp);
@@ -82,7 +92,6 @@ public class DrawView extends AppCompatImageView {
                     float zoom = pImageView.getCurrentZoom();
                     RectF rect = imageView.getZoomedRect();
                     PointF point0Zoom = imageView.getTopLeft();
-                    //PointF point1Zoom = imageView.getBottomRight();
 
                     for(int i=0;i<shapes.size();i++) {
                         if (shapes.get(i).contains(x,y,point0Zoom,zoom)) {
