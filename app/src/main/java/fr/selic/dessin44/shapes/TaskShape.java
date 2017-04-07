@@ -9,28 +9,32 @@ import android.graphics.Rect;
  * Created by stg2 on 07/04/2017.
  */
 
+//class that draw the task rectangles around a Shape
 public class TaskShape {
     private Shape shape;
     private int nbInit;
     private int nbTasks;
     private String orientation;
 
+    //constructor
     public TaskShape(Shape shape, int nbInit, int nbTasks, String orientation ){
         this.shape=shape;
-
         this.nbInit=nbInit;
         this.nbTasks=nbTasks;
         this.orientation=orientation;
     }
 
+    //method that draw the tasks rectangles
     public void addTaskRectOnShape(TaskShape pTaskShape, Canvas pCanvas){
         int strokeWidth=3;
         int rectSize=30;
         int textSize=22;
         int nb=0;
 
+        //retrieval of the Shape
         Shape pShape = pTaskShape.getShape();
 
+        //Paints
         Paint paintText = new Paint();
         Paint paintRect = new Paint();
         Paint paint = new Paint();
@@ -45,7 +49,10 @@ public class TaskShape {
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.RED);
 
+        //if the Shape is a Circle
         if(pShape instanceof Circle){
+
+            //retrieval of the parameters of the circle
             float cx=((Circle) pShape).getCx();
             float cy=((Circle) pShape).getCy();
             float radius=((Circle) pShape).getRadius();
@@ -83,7 +90,10 @@ public class TaskShape {
                 nbInit++;
             }while(nb<=nbTasks);
 
+        //if the SHape is a Rectangle
         }else if(pShape instanceof Rectangle){
+
+            //retrieval of the parameters of the Rectangle
             float x0= ((Rectangle) pShape).getX0();
             float y0= ((Rectangle) pShape).getY0();
             float x1= ((Rectangle) pShape).getX1();
@@ -92,7 +102,6 @@ public class TaskShape {
                 float dec = nb*rectSize;
                 //red rectangles around the rectangle
                 switch(orientation){
-
                     case "b" :
                         //bottom
                         pCanvas.drawRect(((x1+x0)/2), y1+dec, ((x1+x0)/2)+rectSize, y1+dec+rectSize, paintRect);
@@ -124,6 +133,7 @@ public class TaskShape {
         }
     }
 
+    //getters
     public Shape getShape() { return shape; }
 
     public int getNbInit() { return nbInit; }
@@ -132,7 +142,7 @@ public class TaskShape {
 
     public String getOrientation() { return orientation; }
 
-
+    //setters
     public void setShape(Shape shape) { this.shape = shape; }
 
     public void setNbInit(int nbInit) { this.nbInit = nbInit; }
